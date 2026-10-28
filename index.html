@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4F46E5">
+  <meta name="description" content="Cotizá y contratá tu seguro de celular en pocos pasos. Simulación educativa.">
+  <title>Cubrí Seguros · Tu seguro, en minutos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@1.1.0/dist/basecoat.cdn.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme inline {
+      --color-primary: var(--primary);
+      --color-primary-foreground: var(--primary-foreground);
+      --color-border: var(--border);
+      --color-muted: var(--muted);
+      --color-muted-foreground: var(--muted-foreground);
+    }
+    @layer base { *, ::before, ::after { border-color: var(--border); } }
+  </style>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/figma.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <button type="button" class="mobile-back" id="header-back" aria-label="Volver al paso anterior" hidden>‹</button>
+      <a class="brand" href="#inicio" id="brand-home" aria-label="Cubrí: volver al inicio">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><path d="M14 3.5 22 7v6.5c0 5.3-3.2 8.9-8 11-4.8-2.1-8-5.7-8-11V7l8-3.5Z" stroke="white" stroke-width="2" stroke-linejoin="round"/><path d="m10.5 13.5 2.4 2.5 4.9-5.1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Cubrí</span>
+      </a>
+      <strong class="mobile-step-title" id="mobile-step-title" hidden></strong>
+      <nav class="desktop-nav" aria-label="Navegación principal"><span>Seguros</span><span>Siniestros</span><span>Ayuda</span><span class="account-label">Mi cuenta</span></nav>
+    </div>
+  </header>
+
+  <main class="shell main-content">
+    <div id="app-alert" class="alert global-alert" role="alert" data-variant="destructive" hidden></div>
+    <div id="desktop-heading" class="desktop-heading" hidden><span>Seguro de Celular</span><h1 id="desktop-heading-title"></h1></div>
+    <nav id="stepper" class="stepper" aria-label="Progreso de contratación" hidden>
+      <ol id="stepper-list" class="stepper-list"></ol>
+    </nav>
+
+    <!-- PANTALLA 01 · CATÁLOGO -->
+    <section data-paso="0" id="inicio" aria-labelledby="catalog-title">
+      <div class="catalog-layout">
+        <div class="catalog-hero">
+          <span class="badge launch-badge">Primer mes con 20% OFF</span>
+          <h1 id="catalog-title">Protegé lo que más usás en menos de 3 minutos</h1>
+          <p class="hero-lead">Elegí qué querés asegurar, cotizá al instante y contratá 100% online. Sin papeles ni llamadas.</p>
+          <button type="button" id="start-cellular" class="btn hero-cta">Cotizar mi seguro <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="catalog-panel">
+          <div class="product-grid" aria-label="Productos disponibles">
+            <button type="button" class="product-card product-active" id="catalog-cell" aria-label="Seguro de celular seleccionado">
+              <span class="product-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="9" y="3" width="14" height="26" rx="3.5" stroke="currentColor" stroke-width="2.2"/><path d="M14 7h4M15.25 25h1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              <strong>Celular</strong><span class="product-caption">Robo, rotura y pérdida</span><span class="product-price">desde $2.000/mes</span>
+            </button>
+            <div class="product-card unavailable" aria-label="Seguro de hogar próximamente"><span class="product-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="m4 14 12-10 12 10v13H4V14Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 27v-9h8v9" stroke="currentColor" stroke-width="2.2"/></svg></span><strong>Hogar</strong><span class="product-caption">Incendio y robo</span><span class="product-price">Próximamente</span></div>
+            <div class="product-card unavailable" aria-label="Seguro de bicicleta próximamente"><span class="product-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="8" cy="23" r="5" stroke="currentColor" stroke-width="2.2"/><circle cx="25" cy="23" r="5" stroke="currentColor" stroke-width="2.2"/><path d="m8 23 7-12 10 12H8l5-9m2-3h-3" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg></span><strong>Bicicleta</strong><span class="product-caption">Robo total</span><span class="product-price">Próximamente</span></div>
+            <div class="product-card unavailable" aria-label="Seguro de viaje próximamente"><span class="product-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="7" y="9" width="18" height="20" rx="2" stroke="currentColor" stroke-width="2.2"/><path d="M12 9V6a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3v3M7 17h18M12 19v4m8-4v4" stroke="currentColor" stroke-width="2.2"/></svg></span><strong>Viaje</strong><span class="product-caption">Asistencia al viajero</span><span class="product-price">Próximamente</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="benefits-row"><div class="benefit"><strong>100% online</strong><span>Cotizás y contratás desde la web</span></div><div class="benefit"><strong>Póliza al instante</strong><span>La recibís por email al confirmar</span></div><div class="benefit"><strong>Sin permanencia</strong><span>Cancelás cuando quieras</span></div></div>
+      <div class="mobile-promo"><span class="badge">NUEVO</span><span>Primer mes con 20% OFF en todos los planes</span></div>
+      <div class="mobile-catalog-footer"><button type="button" class="btn" id="start-cellular-mobile">Cotizar mi seguro <span aria-hidden="true">→</span></button></div>
+    </section>
+
+    <div id="checkout-layout" class="checkout-grid" hidden>
+      <div class="checkout-primary">
+        <!-- PANTALLA 02 · COTIZAR -->
+        <section data-paso="1" aria-labelledby="quote-title" hidden>
+          <div class="screen-heading"><span class="eyebrow">Seguro de Celular</span><h1 id="quote-title">Contanos sobre tu celular</h1><p>Con estos datos podemos calcular el mejor precio para proteger tu equipo.</p></div>
+          <form id="form-cotizacion" class="card form-card" novalidate>
+            <header class="card-section-title"><span class="section-icon">01</span><div><h2>Datos del dispositivo</h2><p>Completá los datos tal como figuran en tu equipo.</p></div></header>
+            <section class="field-grid">
+              <div role="group" class="field" data-field="marca"><label for="marca">Marca del equipo <span class="required">*</span></label><select id="marca" name="marca" required aria-describedby="marca-error"><option value="">Seleccioná una marca</option><option value="Samsung">Samsung</option><option value="Apple">Apple</option><option value="Motorola">Motorola</option><option value="Xiaomi">Xiaomi</option><option value="Otra">Otra</option></select><p id="marca-error" class="field-error" role="alert" hidden></p></div>
+              <div role="group" class="field" data-field="modelo"><label for="modelo">Modelo <span class="required">*</span></label><input id="modelo" name="modelo" placeholder="Ej.: Galaxy A55" maxlength="40" autocomplete="off" required aria-describedby="modelo-error"><p id="modelo-error" class="field-error" role="alert" hidden></p></div>
+              <div role="group" class="field span-all" data-field="valor"><label for="valor">Valor del equipo <span class="required">*</span></label><div class="input-prefix"><span aria-hidden="true">$</span><input id="valor" name="valor" type="text" inputmode="numeric" placeholder="Ej.: 600.000" autocomplete="off" required aria-describedby="valor-help valor-error"></div><p id="valor-help" class="field-help">Entre $100.000 y $2.500.000 (pesos argentinos).</p><p id="valor-error" class="field-error" role="alert" hidden></p></div>
+              <fieldset class="field span-all radio-field" data-field="antiguedad"><legend>Antigüedad <span class="required">*</span></legend><div class="chip-options"><label class="choice-chip"><input type="radio" name="antiguedad" value="menos1"><span>Menos de 1 año</span></label><label class="choice-chip"><input type="radio" name="antiguedad" value="1a2"><span>1 a 2</span></label><label class="choice-chip"><input type="radio" name="antiguedad" value="mas2"><span>+2 años</span></label></div><p id="antiguedad-error" class="field-error" role="alert" hidden></p></fieldset>
+            </section>
+            <div class="notice-lite"><span aria-hidden="true">◈</span><p>La cotización es gratuita y no implica ningún compromiso de compra.</p></div>
+            <footer class="step-actions"><button type="button" class="btn" data-variant="outline" data-back="0"><span aria-hidden="true">←</span> Volver</button><div class="action-continue"><span id="quote-hint" class="action-hint" aria-live="polite">Completá los datos para continuar</span><button type="submit" id="quote-next" class="btn btn-next" disabled>Ver planes <span aria-hidden="true">→</span></button></div></footer>
+          </form>
+        </section>
+
+        <!-- PANTALLA 03 · PLANES -->
+        <section data-paso="2" aria-labelledby="plans-title" hidden>
+          <div class="screen-heading"><span class="eyebrow">Seguro de Celular</span><h1 id="plans-title">Elegí tu plan</h1><p>Encontrá el plan que mejor se adapte a tu día a día. Podés cambiarlo ahora.</p></div>
+          <div class="card form-card plans-container"><div class="card-section-title"><span class="section-icon">02</span><div><h2>Planes disponibles</h2><p>Cuotas mensuales en pesos argentinos.</p></div></div><div id="plans-list" class="plans-grid" role="radiogroup" aria-label="Elegí un plan"></div><p class="small-disclaimer">* Los valores se calculan en función del equipo y su antigüedad.</p><footer class="step-actions"><button type="button" class="btn" data-variant="outline" data-back="1"><span aria-hidden="true">←</span> Volver</button><button type="button" id="plans-next" class="btn btn-next">Continuar <span aria-hidden="true">→</span></button></footer></div>
+        </section>
+
+        <!-- PANTALLA 04 · DATOS PERSONALES -->
+        <section data-paso="3" aria-labelledby="person-title" hidden>
+          <div class="screen-heading"><span class="eyebrow">Seguro de Celular</span><h1 id="person-title">Tus datos</h1><p>Completá los datos de quien será titular de la póliza.</p></div>
+          <form id="form-personales" class="card form-card" novalidate>
+            <header class="card-section-title"><span class="section-icon">03</span><div><h2>Información personal</h2><p>Verificá que los datos sean correctos.</p></div></header>
+            <section class="field-grid">
+              <div role="group" class="field" data-field="nombre"><label for="nombre">Nombre <span class="required">*</span></label><input id="nombre" name="nombre" autocomplete="given-name" placeholder="Ej.: Juan" aria-describedby="nombre-error" required><p id="nombre-error" class="field-error" role="alert" hidden></p></div>
+              <div role="group" class="field" data-field="apellido"><label for="apellido">Apellido <span class="required">*</span></label><input id="apellido" name="apellido" autocomplete="family-name" placeholder="Ej.: Pérez" aria-describedby="apellido-error" required><p id="apellido-error" class="field-error" role="alert" hidden></p></div>
+              <div role="group" class="field" data-field="dni"><label for="dni">DNI <span class="required">*</span></label><input id="dni" name="dni" inputmode="numeric" maxlength="8" placeholder="Sin puntos" aria-describedby="dni-error" required><p id="dni-error" class="field-error" role="alert" hidden></p></div>
+              <div role="group" class="field" data-field="nacimiento"><label for="nacimiento">Nacimiento <span class="required">*</span></label><input id="nacimiento" name="nacimiento" type="date" autocomplete="bday" aria-describedby="nacimiento-error" required><p id="nacimiento-error" class="field-error" role="alert" hidden></p></div>
+              <div role="group" class="field" data-field="email"><label for="email">Email <span class="required">*</span></label><input id="email" name="email" type="email" autocomplete="email" placeholder="nombre@ejemplo.com" aria-describedby="email-error" required><p id="email-error" class="field-error" role="alert" hidden></p></div>
+              <div role="group" class="field" data-field="celular"><label for="celular">Celular <span class="required">*</span></label><input id="celular" name="celular" type="tel" autocomplete="tel-national" placeholder="Ej.: 11 5555-1234" aria-describedby="celular-error" required><p id="celular-error" class="field-error" role="alert" hidden></p></div>
+              <div class="span-all"><div role="group" class="field terms-field" data-field="terminos"><label class="terms-label" for="terminos"><input id="terminos" name="terminos" type="checkbox" aria-describedby="terminos-error"><span>Acepto los <strong>términos y condiciones</strong> y la política de privacidad. <span class="required">*</span></span></label><p id="terminos-error" class="field-error" role="alert" hidden></p></div></div>
+            </section>
+            <div class="notice-lite"><span aria-hidden="true">♧</span><p>Tu información se usa únicamente para completar esta simulación. No se envía a ningún servidor propio.</p></div>
+            <footer class="step-actions"><button type="button" class="btn" data-variant="outline" data-back="2"><span aria-hidden="true">←</span> Volver</button><div class="action-continue"><span id="person-hint" class="action-hint" aria-live="polite">Completá los datos obligatorios</span><button type="submit" id="person-next" class="btn btn-next" disabled>Continuar al pago <span aria-hidden="true">→</span></button></div></footer>
+          </form>
+        </section>
+
+        <!-- PANTALLA 05 · PAGO -->
+        <section data-paso="4" aria-labelledby="payment-title" hidden>
+          <div class="screen-heading"><span class="eyebrow">Seguro de Celular</span><h1 id="payment-title">Pago</h1><p>Revisá tu cobertura y completá un pago de prueba para finalizar.</p></div>
+          <form id="form-pago" class="card form-card" novalidate>
+            <header class="card-section-title"><span class="section-icon">04</span><div><h2>Medio de pago</h2><p>Seleccioná cómo querés abonar tu seguro.</p></div></header>
+            <div class="method-options" role="radiogroup" aria-label="Medio de pago"><label class="method-option"><input type="radio" name="metodo" value="credito" checked><span aria-hidden="true">▤</span> Tarjeta de crédito</label><label class="method-option"><input type="radio" name="metodo" value="debito"><span aria-hidden="true">▤</span> Tarjeta de débito</label></div>
+            <div class="field-grid payment-fields">
+              <div role="group" class="field span-all" data-field="tarjeta"><label for="tarjeta">Número de tarjeta <span class="required">*</span></label><input id="tarjeta" name="tarjeta" inputmode="numeric" autocomplete="off" maxlength="19" placeholder="0000 0000 0000 0000" aria-describedby="tarjeta-error" required><p id="tarjeta-error" class="field-error" role="alert" hidden></p></div>
+              <div role="group" class="field" data-field="vencimiento"><label for="vencimiento">Vencimiento <span class="required">*</span></label><input id="vencimiento" name="vencimiento" inputmode="numeric" autocomplete="off" maxlength="5" placeholder="MM/AA" aria-describedby="vencimiento-error" required><p id="vencimiento-error" class="field-error" role="alert" hidden></p></div>
+              <div role="group" class="field" data-field="cvv"><label for="cvv">CVV <span class="required">*</span></label><input id="cvv" name="cvv" inputmode="numeric" autocomplete="off" maxlength="3" placeholder="123" aria-describedby="cvv-error" required><p id="cvv-error" class="field-error" role="alert" hidden></p></div>
+              <div role="group" class="field span-all" data-field="titularPago"><label for="titularPago">Nombre como figura en la tarjeta <span class="required">*</span></label><input id="titularPago" name="titularPago" autocomplete="off" placeholder="NOMBRE APELLIDO" aria-describedby="titularPago-error" required><p id="titularPago-error" class="field-error" role="alert" hidden></p></div>
+            </div>
+            <div class="test-notice"><strong><span aria-hidden="true">ⓘ</span> Entorno de simulación</strong><p>No ingreses una tarjeta real. Para probar, usá <code>4111 1111 1111 1111</code> (aprobado) o <code>4000 0000 0000 0002</code> (rechazado).</p></div>
+            <footer class="step-actions"><button type="button" class="btn" data-variant="outline" data-back="3" id="payment-back"><span aria-hidden="true">←</span> Volver</button><div class="action-continue"><span id="payment-hint" class="action-hint" aria-live="polite">Completá los datos de prueba</span><button type="submit" id="pay-button" class="btn btn-next" disabled><span id="pay-label">Pagar</span> <span id="pay-amount"></span> <span aria-hidden="true">→</span></button></div></footer>
+          </form>
+        </section>
+
+        <!-- PANTALLA 06 · ÉXITO -->
+        <section data-paso="5" aria-labelledby="success-title" hidden>
+          <div class="result-card card"><div class="result-icon success-icon" aria-hidden="true">✓</div>
+            <h1 id="success-title">¡Listo! Tu celular ya está protegido</h1>
+            <p class="result-lead">Te enviamos la póliza al email que registraste.</p>
+            <div class="policy-box"><strong id="policy-number"></strong></div>
+            <div class="result-details" id="success-details"></div>
+            <div class="result-buttons"><button type="button" class="btn" id="success-home">Volver al inicio <span aria-hidden="true">→</span></button><button type="button" class="btn" data-variant="outline" id="success-details-toggle" aria-expanded="true">Ocultar detalles</button></div>
+            <p class="result-legal">Simulación educativa · No se emiten coberturas reales.</p>
+          </div>
+        </section>
+        <!-- PANTALLA 07 · ERROR DE PAGO -->
+        <section data-paso="6" aria-labelledby="error-title" hidden>
+          <div class="result-card card"><div class="result-icon error-icon" aria-hidden="true">×</div>
+            <h1 id="error-title">No pudimos procesar el pago</h1>
+            <p class="result-lead">La tarjeta fue rechazada. Revisá los datos o probá con otro medio de pago.</p>
+            <div class="test-notice result-notice" role="alert" id="payment-error-reason">Tarjeta de prueba que fuerza el error: 4000 0000 0000 0002</div>
+            <div class="result-buttons"><button type="button" class="btn" id="retry-payment">Reintentar pago <span aria-hidden="true">→</span></button><button type="button" class="btn" data-variant="outline" id="change-payment">Cambiar medio de pago</button></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Un único resumen para mobile y desktop; no se duplican los cálculos. -->
+      <aside id="summary-aside" class="summary-wrap" aria-label="Resumen de tu seguro">
+        <div id="summary" class="card summary-card" aria-live="polite"></div>
+      </aside>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><span>© <span id="footer-year">2026</span> Cubrí Seguros</span><span>Proyecto educativo · No se emiten pólizas reales</span></div></footer>
+</body>
+</html>
