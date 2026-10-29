@@ -54,9 +54,7 @@ cubri-seguros/
 │   ├── validaciones.js     # validadores puros y mensajes
 │   ├── cotizador.js        # regla de cuota y formato de precio
 │   └── pago.js             # pago simulado y número de póliza
-├── capturas/
-│   ├── mobile-*.png        # 7 capturas a 390 px
-│   └── desktop-*.png       # 7 capturas a 1440 px
+├── capturas-cubri-seguros/ # capturas de las pantallas en 390px y 1440px
 └── README.md
 ```
 
