@@ -89,3 +89,9 @@ Podés probar con vencimiento `12/29` y CVV `123`. La póliza se crea con un con
 ## Capturas
 
 La carpeta `capturas-cubri-seguros/` incluye las catorce pantallas, una por tamaño y paso. Se obtuvieron en una vista de navegador de pruebas con CSS local y datos simulados. Algunos detalles de tipografía y componentes pueden variar levemente según la carga de los CDN externos al correr la app.
+
+
+## Sitio publicado
+
+**URL de producción:**
+[cubriseguros.netlify.app](cubriseguros.netlify.app)
