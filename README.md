@@ -5,7 +5,6 @@ Proyecto de **Diseño UX/UI, TP5 (2026)**. Implementación de las **14 vistas de
 - **Diseño usado:** `Práctica – Contratación Digital de Seguros (UI base).fig`, suministrado para esta revisión, con páginas *Mobile · 390* y *Desktop · 1440*.
 - **Stack obligatorio:** HTML5, Tailwind CSS v4 con CDN, Basecoat UI v1.1.0, JavaScript vanilla con ES modules.
 - **Sin backend, base de datos, pagos reales, React, Vue ni jQuery.**
-- **No incluye diagramas de flujo**, según lo solicitado.
 
 ## Instrucciones para ejecutarlo
 
